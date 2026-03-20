@@ -4,19 +4,16 @@
  import { Header } from '../components/Header';
 
 
- export function HomePage() {
+ export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCartItems] = useState([]);
+  
 
   useEffect(() => {
     axios.get('/api/products')
     .then((response) => {
       setProducts(response.data);
     })
-    axios.get('/api/cart-items')
-    .then((response) => {
-      setCartItems(response.data);
-    })
+    
 
     }, []);// []empty dependency array means this will only run once when the component first mounts
     
