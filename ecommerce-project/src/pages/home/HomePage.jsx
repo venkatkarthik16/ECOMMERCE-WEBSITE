@@ -1,21 +1,20 @@
- import axios from 'axios';
- import {  useEffect ,useState } from 'react';   
- import './HomePage.css';
- import { Header } from '../../components/Header';
- import { ProductsGrid } from './ProductsGrid';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "./HomePage.css";
+import { Header } from "../../components/Header";
+import { ProductsGrid } from "./ProductsGrid";
 
-
- export function HomePage({ cart }) {
+export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
-  
 
   useEffect(() => {
-    axios.get('/api/products')
-    .then((response) => {
+    const getHomeData = async () => {
+      const response = await axios.get("/api/products");
       setProducts(response.data);
-    })
-    }, []);// []empty dependency array means this will only run once when the component first mounts
-    
+    };
+
+    getHomeData();
+  }, []); // []empty dependency array means this will only run once when the component first mounts
 
   return (
     <>
@@ -24,7 +23,7 @@
       <Header cart={cart} />
 
       <div className="home-page">
-        <ProductsGrid products={products}/>
+        <ProductsGrid products={products} />
       </div>
     </>
   );
