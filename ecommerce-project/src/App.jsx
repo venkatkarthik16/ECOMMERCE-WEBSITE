@@ -10,6 +10,7 @@ import axios from "axios";
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const loadCart = async () => {
     const response = await axios.get("/api/cart-items?expand=product");
@@ -22,7 +23,17 @@ function App() {
 
   return (
     <Routes>
-      <Route index element={<HomePage cart={cart} loadCart={loadCart} />} />
+      <Route
+        index
+        element={
+          <HomePage
+            cart={cart}
+            loadCart={loadCart}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+        }
+      />
       <Route
         path="checkout"
         element={<CheckoutPage cart={cart} loadCart={loadCart} />}
