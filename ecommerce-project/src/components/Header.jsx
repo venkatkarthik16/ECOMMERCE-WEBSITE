@@ -1,10 +1,11 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-
 import "./header.css";
 
 export function Header({ cart, setSearchQuery }) {
   const [input, setInput] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   let totalQuantity = 0;
   cart.forEach((cartItem) => {
@@ -13,6 +14,13 @@ export function Header({ cart, setSearchQuery }) {
 
   const handleSearch = () => {
     setSearchQuery(input);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    window.location.href = "/";
   };
 
   return (
@@ -39,6 +47,47 @@ export function Header({ cart, setSearchQuery }) {
       </div>
 
       <div className="right-section">
+        {user ? (
+          <>
+            <span
+              style={{
+                color: "white",
+                marginRight: "15px",
+              }}
+            >
+              Hi, {user.name}
+            </span>
+
+            <button
+              onClick={logout}
+              style={{
+                cursor: "pointer",
+                marginRight: "15px",
+              }}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="header-link"
+              style={{ color: "white", marginRight: "15px" }}
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/register"
+              className="header-link"
+              style={{ color: "white", marginRight: "15px" }}
+            >
+              Register
+            </Link>
+          </>
+        )}
+
         <Link to="/orders" className="orders-link header-link">
           <span className="orders-text">Orders</span>
         </Link>

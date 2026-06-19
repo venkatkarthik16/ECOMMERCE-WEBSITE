@@ -79,9 +79,16 @@ router.post('/login', async (req, res) => {
       { expiresIn: '7d' }
     );
 
+    const userData = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone
+    };
+
     res.json({
       token,
-      user
+      user: userData
     });
 
   } 

@@ -1,9 +1,11 @@
-import { Routes, Route } from "react-router";
-
+import { Routes, Route } from "react-router-dom";
+import { LoginPage } from "./pages/login/LoginPage";
+import { RegisterPage } from "./pages/register/RegisterPage";
 import { HomePage } from "./pages/home/HomePage";
 import { CheckoutPage } from "./pages/checkout/CheckoutPage";
 import { OrdersPage } from "./pages/orders/OrdersPage";
 import { TrackingPage } from "./pages/tracking/TrackingPage";
+import { Navigate } from "react-router-dom";
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -36,10 +38,18 @@ function App() {
       />
       <Route
         path="checkout"
-        element={<CheckoutPage cart={cart} loadCart={loadCart} />}
+        element={
+          localStorage.getItem("token") ? (
+            <CheckoutPage cart={cart} loadCart={loadCart} />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
       />
       <Route path="orders" element={<OrdersPage cart={cart} />} />
       <Route path="tracking" element={<TrackingPage cart={cart} />} />
+      <Route path="login" element={<LoginPage />} />
+      <Route path="register" element={<RegisterPage />} />
     </Routes>
   );
 }
