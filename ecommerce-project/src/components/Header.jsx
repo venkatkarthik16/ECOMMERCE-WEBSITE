@@ -4,7 +4,7 @@ import "./header.css";
 
 export function Header({ cart, setSearchQuery }) {
   const [input, setInput] = useState("");
-
+  const [showMenu, setShowMenu] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
 
   let totalQuantity = 0;
@@ -47,47 +47,6 @@ export function Header({ cart, setSearchQuery }) {
       </div>
 
       <div className="right-section">
-        {user ? (
-          <>
-            <span
-              style={{
-                color: "white",
-                marginRight: "15px",
-              }}
-            >
-              Hi, {user.name}
-            </span>
-
-            <button
-              onClick={logout}
-              style={{
-                cursor: "pointer",
-                marginRight: "15px",
-              }}
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link
-              to="/login"
-              className="header-link"
-              style={{ color: "white", marginRight: "15px" }}
-            >
-              Login
-            </Link>
-
-            <Link
-              to="/register"
-              className="header-link"
-              style={{ color: "white", marginRight: "15px" }}
-            >
-              Register
-            </Link>
-          </>
-        )}
-
         <Link to="/orders" className="orders-link header-link">
           <span className="orders-text">Orders</span>
         </Link>
@@ -97,6 +56,36 @@ export function Header({ cart, setSearchQuery }) {
           <div className="cart-quantity">{totalQuantity}</div>
           <div className="cart-text">Cart</div>
         </Link>
+
+        {user ? (
+          <div className="profile-menu">
+            <span onClick={() => setShowMenu(!showMenu)}>👤 {user.name} ▼</span>
+
+            {showMenu && (
+              <div className="profile-dropdown">
+                <div onClick={logout}>Logout</div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="header-link"
+              style={{ color: "white" }}
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/register"
+              className="header-link"
+              style={{ color: "white" }}
+            >
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

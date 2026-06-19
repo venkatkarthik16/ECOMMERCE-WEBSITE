@@ -63,8 +63,8 @@
 }
 
 .header .middle-section {
-  flex: 1;
-  max-width: 850px;
+  flex :1;
+  max-width: 700px;
   margin-left: 10px;
   margin-right: 10px;
   display: flex;
@@ -100,10 +100,13 @@
 }
 
 .header .right-section {
-  width: 180px;
+  min-width: 320px;
   flex-shrink: 0;
+
   display: flex;
-  justify-content: end;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .header .orders-link {
@@ -149,4 +152,36 @@
 
   width: 26px;
   text-align: center;
+}
+
+.profile-menu {
+  position: relative;
+  color: white;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 35px;
+  right: 0;
+
+  background: white;
+  color: black;
+
+  border-radius: 6px;
+  min-width: 120px;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
+  z-index: 1000;
+}
+
+.profile-dropdown div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.profile-dropdown div:hover {
+  background: #f5f5f5;
 }
