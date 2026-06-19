@@ -19,6 +19,9 @@ import { defaultCart } from './defaultData/defaultCart.js';
 import { defaultOrders } from './defaultData/defaultOrders.js';
 import fs from 'fs';
 
+import authRoutes from './routes/auth.js';
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
@@ -38,6 +41,8 @@ app.use('/api/cart-items', cartItemRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reset', resetRoutes);
 app.use('/api/payment-summary', paymentSummaryRoutes);
+app.use('/api/auth', authRoutes);
+
 
 // Serve static files from the dist folder
 app.use(express.static(path.join(__dirname, 'dist')));
