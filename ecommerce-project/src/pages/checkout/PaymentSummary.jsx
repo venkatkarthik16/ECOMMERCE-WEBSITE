@@ -5,43 +5,11 @@ export function PaymentSummary({ paymentSummary, loadCart }) {
   const navigate = useNavigate();
 
   const createOrder = async () => {
-    try {
-      const { data: razorpayOrder } = await axios.post(
-        "/api/payment/create-order",
-      );
+    await axios.post("/api/orders");
 
-      const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-        amount: razorpayOrder.amount,
-        currency: "INR",
-        name: "Kartify Ecommerce",
-        description: "Order Payment",
-        order_id: razorpayOrder.id,
+    await loadCart();
 
-        handler: async function (response) {
-          const verifyResponse = await axios.post(
-            "/api/payment/verify",
-            response,
-          );
-
-          if (verifyResponse.data.success) {
-            await axios.post("/api/orders");
-
-            await loadCart();
-
-            navigate("/orders");
-          } else {
-            alert("Payment verification failed");
-          }
-        },
-      };
-
-      const razorpay = new window.Razorpay(options);
-
-      razorpay.open();
-    } catch (error) {
-      console.error(error);
-    }
+    navigate("/orders");
   };
   return (
     <div className="payment-summary">
