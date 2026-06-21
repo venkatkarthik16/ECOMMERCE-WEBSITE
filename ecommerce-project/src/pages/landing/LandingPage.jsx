@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import {
   ShoppingCart,
@@ -242,12 +243,12 @@ export default function LandingPage() {
             <button className="nav-icon-btn" aria-label="Search">
               <Search size={17} />
             </button>
-            <a href="#login" className="btn btn-ghost">
+            <Link to="/login" className="btn btn-ghost">
               Log in
-            </a>
-            <a href="#register" className="btn btn-primary">
+            </Link>
+            <Link to="/register" className="btn btn-primary">
               Sign up
-            </a>
+            </Link>
             <button
               className="nav-menu-toggle"
               aria-label="Toggle menu"

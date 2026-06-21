@@ -28,7 +28,7 @@ function App() {
     <Routes>
       <Route index element={<LandingPage />} />
       <Route
-        index
+        path="home"
         element={
           <HomePage
             cart={cart}
