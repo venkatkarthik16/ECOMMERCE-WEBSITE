@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/landing/LandingPage";
 import { LoginPage } from "./pages/login/LoginPage";
 import { RegisterPage } from "./pages/register/RegisterPage";
 import { HomePage } from "./pages/home/HomePage";
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <Routes>
+      <Route index element={<LandingPage />} />
       <Route
         index
         element={
