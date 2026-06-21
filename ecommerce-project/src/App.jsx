@@ -38,13 +38,7 @@ function App() {
       />
       <Route
         path="checkout"
-        element={
-          localStorage.getItem("token") ? (
-            <CheckoutPage cart={cart} loadCart={loadCart} />
-          ) : (
-            <Navigate to="/login" />
-          )
-        }
+        element={<CheckoutPage cart={cart} loadCart={loadCart} />}
       />
       <Route path="orders" element={<OrdersPage cart={cart} />} />
       <Route path="tracking" element={<TrackingPage cart={cart} />} />

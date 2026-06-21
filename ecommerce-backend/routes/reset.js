@@ -6,8 +6,7 @@ import { CartItem } from '../models/CartItem.js';
 import { Order } from '../models/Order.js';
 import { defaultProducts } from '../defaultData/defaultProducts.js';
 import { defaultDeliveryOptions } from '../defaultData/defaultDeliveryOptions.js';
-import { defaultCart } from '../defaultData/defaultCart.js';
-import { defaultOrders } from '../defaultData/defaultOrders.js';
+
 
 const router = express.Router();
 
@@ -28,22 +27,11 @@ router.post('/', async (req, res) => {
     updatedAt: new Date(timestamp + index)
   }));
 
-  const cartItemsWithTimestamps = defaultCart.map((item, index) => ({
-    ...item,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
-
-  const ordersWithTimestamps = defaultOrders.map((order, index) => ({
-    ...order,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
+  
 
   await Product.bulkCreate(productsWithTimestamps);
   await DeliveryOption.bulkCreate(deliveryOptionsWithTimestamps);
-  await CartItem.bulkCreate(cartItemsWithTimestamps);
-  await Order.bulkCreate(ordersWithTimestamps);
+
 
   res.status(204).send();
 });

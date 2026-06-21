@@ -24,6 +24,19 @@ export function CheckoutPage({ cart, loadCart }) {
     fetchCheckoutData();
   }, [cart]);
 
+  if (cart.length === 0) {
+    return (
+      <div className="empty-cart-container">
+        <h1>Your Cart is Empty 🛒</h1>
+        <p>Looks like you haven't added any products yet.</p>
+
+        <button onClick={() => (window.location.href = "/")}>
+          Continue Shopping
+        </button>
+      </div>
+    );
+  }
+
   return (
     <>
       <title>Checkout</title>;
@@ -39,7 +52,7 @@ export function CheckoutPage({ cart, loadCart }) {
           <div className="checkout-header-middle-section">
             Checkout (
             <a className="return-to-home-link" href="/">
-              3 items
+              {cart.length} items
             </a>
             )
           </div>
