@@ -16,8 +16,18 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const loadCart = async () => {
-    const response = await axios.get("/api/cart-items?expand=product");
-    setCart(response.data);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setCart([]);
+      return;
+    }
+    try {
+      const response = await axios.get("/api/cart-items?expand=product");
+      setCart(response.data);
+    } catch (error) {
+      console.error("Failed to load cart:", error);
+      setCart([]);
+    }
   };
 
   useEffect(() => {

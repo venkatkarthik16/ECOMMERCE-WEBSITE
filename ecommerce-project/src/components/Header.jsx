@@ -26,7 +26,11 @@ export function Header({ cart, setSearchQuery }) {
   return (
     <div className="header">
       <div className="left-section">
-        <Link to="/" className="header-link" onClick={() => setSearchQuery("")}>
+        <Link
+          to="/home"
+          className="header-link"
+          onClick={() => setSearchQuery("")}
+        >
           <img className="logo" src="images/logo-white.png" />
           <img className="mobile-logo" src="images/mobile-logo-white.png" />
         </Link>

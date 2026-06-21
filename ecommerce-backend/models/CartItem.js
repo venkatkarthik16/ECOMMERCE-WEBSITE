@@ -2,6 +2,10 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from './index.js';
 
 export const CartItem = sequelize.define('CartItem', {
+  userId: {
+    type: DataTypes.UUID,
+    allowNull: false
+  },
   productId: {
     type: DataTypes.UUID,
     allowNull: false,

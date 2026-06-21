@@ -30,7 +30,7 @@ export function CheckoutPage({ cart, loadCart }) {
         <h1>Your Cart is Empty 🛒</h1>
         <p>Looks like you haven't added any products yet.</p>
 
-        <button onClick={() => (window.location.href = "/")}>
+        <button onClick={() => (window.location.href = "/home")}>
           Continue Shopping
         </button>
       </div>
@@ -43,7 +43,7 @@ export function CheckoutPage({ cart, loadCart }) {
       <div className="checkout-header">
         <div className="header-content">
           <div className="checkout-header-left-section">
-            <a href="/">
+            <a href="/home">
               <img className="logo" src="images/logo.png" />
               <img className="mobile-logo" src="images/mobile-logo.png" />
             </a>
@@ -51,7 +51,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
           <div className="checkout-header-middle-section">
             Checkout (
-            <a className="return-to-home-link" href="/">
+            <a className="return-to-home-link" href="/home">
               {cart.length} items
             </a>
             )
